@@ -269,29 +269,46 @@
     <script>
         const DB_URL = "https://mineeze-so2-default-rtdb.firebaseio.com";
         const ADMIN_ID = "8491429813";
-
         const tg = window.Telegram?.WebApp;
-        let tgUserId = localStorage.getItem('me_fallback_id') || String(Math.floor(10000000 + Math.random() * 90000000));
-        localStorage.setItem('me_fallback_id', tgUserId);
+        let tgUserId = "";
         let tgUserName = "Игрок MineEze";
 
-        if (tg) {
-            tg.expand(); tg.ready();
-            if (tg.initDataUnsafe?.user) {
-                tgUserId = String(tg.initDataUnsafe.user.id);
-                tgUserName = tg.initDataUnsafe.user.first_name || "Игрок";
+        function parseTgUser() {
+            if (window.Telegram?.WebApp) {
+                const webApp = window.Telegram.WebApp;
+                webApp.expand();
+                webApp.ready();
+                if (webApp.initDataUnsafe?.user?.id) {
+                    return webApp.initDataUnsafe.user;
+                }
+                if (webApp.initData) {
+                    try {
+                        const params = new URLSearchParams(webApp.initData);
+                        const uStr = params.get('user');
+                        if (uStr) return JSON.parse(uStr);
+                    } catch (e) {}
+                }
             }
+            return null;
+        }
+
+        const realUser = parseTgUser();
+        if (realUser && realUser.id) {
+            tgUserId = String(realUser.id);
+            tgUserName = realUser.first_name || "Игрок";
+        } else {
+            tgUserId = localStorage.getItem('me_fallback_id') || String(Math.floor(10000000 + Math.random() * 90000000));
+            localStorage.setItem('me_fallback_id', tgUserId);
         }
 
         document.getElementById('p-tgid').innerText = tgUserId;
         document.getElementById('topup-id').innerText = tgUserId;
         document.getElementById('p-username').innerText = tgUserName;
 
-        // Показываем кнопку Админки только тебе
         if (tgUserId === ADMIN_ID) {
             document.getElementById('nav-admin').style.display = 'flex';
         }
-
+        
         let gold = 5;
         let inv = [];
         let stats = { opened: 0, best: 0 };
