@@ -10,12 +10,12 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, sans-serif; user-select: none; }
         body { background: var(--bg); color: var(--txt); padding-bottom: 75px; min-height: 100vh; }
         .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--card); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--bdr); }
-        .logo { font-weight: 900; font-size: 19px; background: linear-gradient(90deg, #3b82f6, #f39c12); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 0.5px; }
+        .logo { font-weight: 900; font-size: 19px; background: linear-gradient(90deg, #3b82f6, #f39c12); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .bal-box { display: flex; align-items: center; gap: 8px; background: rgba(243,156,18,0.15); color: var(--acc); padding: 6px 12px; border-radius: 10px; font-weight: bold; }
         .add-btn { background: var(--acc); color: #000; border: none; width: 22px; height: 22px; border-radius: 6px; font-weight: bold; }
         .tab { display: none; padding: 14px; max-width: 480px; margin: 0 auto; }
         .tab.active { display: block; }
-        .cat-title { font-size: 15px; font-weight: 800; color: var(--blu); margin: 14px 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cat-title { font-size: 14px; font-weight: 800; color: var(--blu); margin: 14px 0 8px; text-transform: uppercase; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .box { background: var(--card); padding: 14px; border-radius: 14px; border: 1px solid var(--bdr); margin-bottom: 12px; }
         .case-card { background: linear-gradient(160deg, var(--card), #0b1222); border-radius: 12px; padding: 12px 6px; text-align: center; border: 1px solid var(--bdr); }
@@ -59,6 +59,9 @@
         .st-wait { background: rgba(243,156,18,0.2); color: var(--acc); }
         .st-mod { background: rgba(59,130,246,0.2); color: var(--blu); }
         .st-rej { background: rgba(239,68,68,0.2); color: var(--red); }
+        .st-ok { background: rgba(46,204,113,0.2); color: var(--grn); }
+        .adm-acts { display: flex; gap: 4px; margin-top: 8px; }
+        .adm-btn { flex: 1; padding: 6px 2px; border: none; border-radius: 6px; font-size: 10px; font-weight: bold; color: #fff; }
         .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 65px; background: var(--card); display: flex; border-top: 1px solid var(--bdr); z-index: 100; }
         .nav-i { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--mut); font-size: 11px; gap: 3px; }
         .nav-i.active { color: var(--blu); font-weight: bold; }
@@ -69,10 +72,9 @@
 <body>
     <div class="header">
         <div class="logo">MineEze</div>
-        <div class="bal-box"><span>💰 <span id="bal">500</span> G</span><button class="add-btn" onclick="openTopup()">+</button></div>
+        <div class="bal-box"><span>💰 <span id="bal">5</span> G</span><button class="add-btn" onclick="openTopup()">+</button></div>
     </div>
 
-    <!-- 1. КЕЙСЫ (3 категории по 3 кейса) -->
     <div id="tab-cases" class="tab active">
         <div id="cases-catalog"></div>
         <div id="case-detail" style="display:none;">
@@ -88,7 +90,6 @@
         </div>
     </div>
 
-    <!-- 2. ИГРЫ -->
     <div id="tab-games" class="tab">
         <div class="g-sw">
             <button class="g-btn active" id="bg-upg" onclick="swGame('upg')">🎡 Апгрейд</button>
@@ -144,7 +145,6 @@
         </div>
     </div>
 
-    <!-- 3. БОНУСЫ И ПРОМОКОДЫ -->
     <div id="tab-bonus" class="tab">
         <div class="box" style="text-align:center;">
             <div style="font-size:40px; margin-bottom:6px;">🎁</div>
@@ -159,13 +159,12 @@
         </div>
     </div>
 
-    <!-- 4. ПРОФИЛЬ, ИНВЕНТАРЬ И ИСТОРИЯ ВЫВОДОВ -->
     <div id="tab-prof" class="tab">
         <div class="box">
             <div style="display:flex; justify-content:space-between; align-items:center;">
                 <div style="display:flex; align-items:center; gap:10px;">
                     <div style="width:44px; height:44px; border-radius:50%; background:var(--blu); display:flex; align-items:center; justify-content:center; font-size:22px;">👤</div>
-                    <div><b style="font-size:16px;" id="p-username">Игрок MineEze</b><div style="font-size:11px; color:var(--mut);">ID: <span id="p-tgid">000000</span></div></div>
+                    <div><b style="font-size:16px;" id="p-username">Игрок MineEze</b><div style="font-size:11px; color:var(--mut);">ID: <span id="p-tgid">...</span></div></div>
                 </div>
                 <button onclick="openHistory()" style="background:var(--card-l); border:1px solid var(--bdr); color:var(--blu); padding:7px 10px; border-radius:8px; font-size:11px; font-weight:bold;">📤 История выводов</button>
             </div>
@@ -180,24 +179,49 @@
         </div>
         <div class="grid-3" id="main-inv"></div>
     </div>
-    <!-- МОДАЛКА ПОПОЛНЕНИЯ -->
+
+    <!-- СКРЫТАЯ ВКЛАДКА 5: АДМИН-ПАНЕЛЬ (Видна только ID 8491429813) -->
+    <div id="tab-admin" class="tab">
+        <div class="box">
+            <h3 style="color:var(--acc); margin-bottom:6px;">💰 Управление балансом игрока</h3>
+            <input type="text" id="adm-uid" class="inp" placeholder="Telegram ID игрока (напр. 12345678)">
+            <input type="number" id="adm-amt" class="inp" placeholder="Сумма (+500 или -100)">
+            <button class="btn btn-gold" onclick="admAddGold()">Изменить баланс</button>
+        </div>
+        <div class="box">
+            <h3 style="color:var(--blu); margin-bottom:6px;">🎟️ Создать промокод</h3>
+            <input type="text" id="adm-pcode" class="inp" placeholder="Название кода (напр. STREAM50)">
+            <div style="display:flex; gap:8px;">
+                <input type="number" id="adm-preward" class="inp" placeholder="Сумма G">
+                <input type="number" id="adm-puses" class="inp" placeholder="Кол-во активаций">
+            </div>
+            <button class="btn" onclick="admCreatePromo()">Создать промокод</button>
+            <div id="adm-promos-list" style="margin-top:10px;"></div>
+        </div>
+        <div class="box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <h3 style="color:var(--grn);">📤 Заявки на вывод</h3>
+                <button onclick="loadAdminData()" style="background:var(--card-l); border:1px solid var(--bdr); color:#fff; padding:4px 8px; border-radius:6px; font-size:11px;">Обновить</button>
+            </div>
+            <div id="adm-wd-list"></div>
+        </div>
+    </div>
     <div class="modal" id="topup-modal">
         <div class="m-box">
             <div style="font-size:38px; margin-bottom:8px;">💎</div>
             <b style="font-size:17px;">Пополнение баланса</b>
             <p style="font-size:13px; color:var(--mut); margin:10px 0; line-height:1.4;">Для пополнения баланса или связи с поддержкой напишите администратору <b style="color:var(--acc)">@FarmGoldEzz</b></p>
-            <div style="background:var(--bg); padding:8px; border-radius:8px; font-size:12px; margin-bottom:12px; border:1px solid var(--bdr);">Ваш ID: <b id="topup-id">000000</b></div>
+            <div style="background:var(--bg); padding:8px; border-radius:8px; font-size:12px; margin-bottom:12px; border:1px solid var(--bdr);">Ваш ID: <b id="topup-id">...</b></div>
             <a href="https://t.me" target="_blank" style="text-decoration:none;"><button class="btn btn-gold" style="margin:0;">Написать @FarmGoldEzz</button></a>
             <button class="btn" style="background:var(--card-l); margin-top:8px;" onclick="document.getElementById('topup-modal').style.display='none'">Закрыть</button>
         </div>
     </div>
 
-    <!-- МОДАЛКА ВЫВОДА СКИНА -->
     <div class="modal" id="withdraw-modal">
         <div class="m-box">
             <div style="font-size:36px;" id="wd-ico">🔫</div>
             <b style="font-size:16px;" id="wd-name">M4 "Flock"</b>
-            <p style="font-size:12px; color:var(--mut); margin:8px 0; line-height:1.4;" id="wd-instr">Выставьте скин на рынок за указанную сумму с копейками:</p>
+            <p style="font-size:12px; color:var(--mut); margin:8px 0; line-height:1.4;" id="wd-instr">Выставьте скин за сумму с копейками:</p>
             <div style="background:var(--bg); padding:8px; border-radius:8px; font-size:16px; font-weight:900; color:var(--grn); border:1px solid var(--bdr);" id="wd-exact-price">0.00 G</div>
             <input type="text" id="wd-pattern" class="inp" placeholder="Паттерн (напр. 412 или 000)">
             <input type="text" id="wd-gameid" class="inp" placeholder="Ваш ID из игры Standoff 2">
@@ -206,7 +230,6 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА ИСТОРИИ ВЫВОДОВ -->
     <div class="modal" id="history-modal">
         <div class="m-box" style="max-width:340px;">
             <b style="font-size:16px;">📤 История выводов</b>
@@ -215,7 +238,6 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА ВЫПАДЕНИЯ -->
     <div class="modal" id="modal">
         <div class="m-box">
             <div style="font-size:12px; color:var(--mut);" id="m-sub">ВЫПАЛО</div>
@@ -229,7 +251,6 @@
         </div>
     </div>
 
-    <!-- МОДАЛКА УВЕДОМЛЕНИЙ -->
     <div class="modal" id="alert-modal">
         <div class="m-box">
             <div style="font-size:40px; margin-bottom:10px;" id="a-ico">💎</div>
@@ -243,33 +264,85 @@
         <div class="nav-i" onclick="swTab('games', this)"><span style="font-size:20px">🎮</span>Игры</div>
         <div class="nav-i" onclick="swTab('bonus', this)"><span style="font-size:20px">🎁</span>Бонусы</div>
         <div class="nav-i" onclick="swTab('prof', this)"><span style="font-size:20px">👤</span>Профиль</div>
+        <div class="nav-i" id="nav-admin" style="display:none; color:var(--acc);" onclick="swTab('admin', this)"><span style="font-size:20px">👑</span>Админка</div>
     </div>
     <script>
+        const DB_URL = "https://mineeze-so2-default-rtdb.firebaseio.com";
+        const ADMIN_ID = "8491429813";
+
         const tg = window.Telegram?.WebApp;
-        let tgUserId = '74829104';
+        let tgUserId = localStorage.getItem('me_fallback_id') || String(Math.floor(10000000 + Math.random() * 90000000));
+        localStorage.setItem('me_fallback_id', tgUserId);
+        let tgUserName = "Игрок MineEze";
+
         if (tg) {
             tg.expand(); tg.ready();
             if (tg.initDataUnsafe?.user) {
-                const u = tg.initDataUnsafe.user;
-                tgUserId = u.id;
-                document.getElementById('p-username').innerText = u.first_name;
+                tgUserId = String(tg.initDataUnsafe.user.id);
+                tgUserName = tg.initDataUnsafe.user.first_name || "Игрок";
             }
         }
+
         document.getElementById('p-tgid').innerText = tgUserId;
         document.getElementById('topup-id').innerText = tgUserId;
+        document.getElementById('p-username').innerText = tgUserName;
 
-        let gold = parseFloat(localStorage.getItem('me_g')) || 5;
-        let inv = JSON.parse(localStorage.getItem('me_i')) || [];
-        let stats = JSON.parse(localStorage.getItem('me_st')) || { opened: 0, best: 0 };
-        let withdrawals = JSON.parse(localStorage.getItem('me_wd')) || [];
-        let usedPromos = JSON.parse(localStorage.getItem('me_pr')) || [];
-        let lastDaily = parseInt(localStorage.getItem('me_dl')) || 0;
+        // Показываем кнопку Админки только тебе
+        if (tgUserId === ADMIN_ID) {
+            document.getElementById('nav-admin').style.display = 'flex';
+        }
+
+        let gold = 5;
+        let inv = [];
+        let stats = { opened: 0, best: 0 };
+        let usedPromos = [];
+        let lastDaily = 0;
         let busy = false;
 
         function customAlert(txt, ico = '💎') { document.getElementById('a-ico').innerText = ico; document.getElementById('a-msg').innerText = txt; document.getElementById('alert-modal').style.display = 'flex'; }
         function openTopup() { document.getElementById('topup-modal').style.display = 'flex'; }
 
-        // Расширенная база скинов
+        // Загрузка данных игрока из Firebase при старте
+        async function initCloudUser() {
+            try {
+                const res = await fetch(`${DB_URL}/users/${tgUserId}.json`);
+                const data = await res.json();
+                if (data) {
+                    gold = data.gold !== undefined ? Number(data.gold) : 5;
+                    inv = data.inv || [];
+                    stats = data.stats || { opened: 0, best: 0 };
+                    usedPromos = data.usedPromos || [];
+                    lastDaily = data.lastDaily || 0;
+                } else {
+                    await syncCloudUser();
+                }
+            } catch (e) { console.log("Cloud sync error", e); }
+            updateUI();
+        }
+
+        async function syncCloudUser() {
+            gold = Math.round(gold * 100) / 100;
+            try {
+                await fetch(`${DB_URL}/users/${tgUserId}.json`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ username: tgUserName, gold, inv, stats, usedPromos, lastDaily })
+                });
+            } catch (e) {}
+        }
+
+        function save() {
+            gold = Math.round(gold * 100) / 100;
+            updateUI();
+            syncCloudUser();
+        }
+
+        function updateUI() {
+            document.getElementById('bal').innerText = gold;
+            document.getElementById('st-opened').innerText = stats.opened;
+            document.getElementById('st-best').innerText = stats.best + ' G';
+            renderMainInv(); renderUpgList(); renderContractList(); updateDailyUI();
+        }
+
         const allSkins = [
             { name: 'P350 "Savannah"', price: 3, icon: '🔫', color: '#b0c3d9' },
             { name: 'G22 "Pixel"', price: 5, icon: '🔫', color: '#b0c3d9' },
@@ -297,66 +370,25 @@
             { name: 'M9 "Dragon Glass"', price: 3500, icon: '🗡️', color: '#eb4b4b' }
         ];
         const sAt = (i) => allSkins.at(i);
-
-        // 3 категории по 3 кейса с раздельными шансами
         const casesData = [
-            // Категория 1: Бюджетные
-            { cat: 'Бюджетные кейсы', name: 'Бомж Кейс', price: 9, icon: '📦', items: [
-                { ...sAt(0), chance: 35 }, { ...sAt(1), chance: 30 }, { ...sAt(2), chance: 20 }, { ...sAt(3), chance: 10 }, { ...sAt(5), chance: 5 }
-            ]},
-            { cat: 'Бюджетные кейсы', name: 'Start Box', price: 15, icon: '🗳️', items: [
-                { ...sAt(1), chance: 30 }, { ...sAt(2), chance: 28 }, { ...sAt(3), chance: 22 }, { ...sAt(4), chance: 14 }, { ...sAt(6), chance: 6 }
-            ]},
-            { cat: 'Бюджетные кейсы', name: 'Furious Case', price: 29, icon: '🧰', items: [
-                { ...sAt(2), chance: 25 }, { ...sAt(3), chance: 25 }, { ...sAt(5), chance: 25 }, { ...sAt(6), chance: 18 }, { ...sAt(8), chance: 7 }
-            ]},
-            // Категория 2: Стандарт
-            { cat: 'Стандартные кейсы', name: 'Rival Case', price: 49, icon: '🎒', items: [
-                { ...sAt(4), chance: 28 }, { ...sAt(5), chance: 27 }, { ...sAt(7), chance: 22 }, { ...sAt(9), chance: 16 }, { ...sAt(11), chance: 7 }
-            ]},
-            { cat: 'Стандартные кейсы', name: 'Scorpion Case', price: 69, icon: '💼', items: [
-                { ...sAt(4), chance: 25 }, { ...sAt(5), chance: 25 }, { ...sAt(7), chance: 25 }, { ...sAt(9), chance: 15 }, { ...sAt(11), chance: 7 }, { ...sAt(13), chance: 3 }
-            ]},
-            { cat: 'Стандартные кейсы', name: 'Empire Case', price: 119, icon: '🛡️', items: [
-                { ...sAt(7), chance: 26 }, { ...sAt(9), chance: 26 }, { ...sAt(10), chance: 22 }, { ...sAt(12), chance: 15 }, { ...sAt(14), chance: 8 }, { ...sAt(16), chance: 3 }
-            ]},
-            // Категория 3: Премиум
-            { cat: 'Премиум кейсы', name: 'Arcane Box', price: 199, icon: '👑', items: [
-                { ...sAt(9), chance: 26 }, { ...sAt(11), chance: 26 }, { ...sAt(13), chance: 22 }, { ...sAt(15), chance: 15 }, { ...sAt(17), chance: 8 }, { ...sAt(19), chance: 3 }
-            ]},
-            { cat: 'Премиум кейсы', name: 'Dragon Case', price: 399, icon: '🐉', items: [
-                { ...sAt(12), chance: 28 }, { ...sAt(14), chance: 26 }, { ...sAt(16), chance: 22 }, { ...sAt(18), chance: 14 }, { ...sAt(20), chance: 7 }, { ...sAt(22), chance: 3 }
-            ]},
-            { cat: 'Премиум кейсы', name: 'Knife Royal', price: 799, icon: '🗡️', items: [
-                { ...sAt(15), chance: 30 }, { ...sAt(17), chance: 28 }, { ...sAt(19), chance: 20 }, { ...sAt(21), chance: 13 }, { ...sAt(22), chance: 6 }, { ...sAt(23), chance: 3 }
-            ]}
+            { cat: 'Бюджетные кейсы', name: 'Бомж Кейс', price: 9, icon: '📦', items: [{ ...sAt(0), chance: 35 }, { ...sAt(1), chance: 30 }, { ...sAt(2), chance: 20 }, { ...sAt(3), chance: 10 }, { ...sAt(5), chance: 5 }] },
+            { cat: 'Бюджетные кейсы', name: 'Start Box', price: 15, icon: '🗳️', items: [{ ...sAt(1), chance: 30 }, { ...sAt(2), chance: 28 }, { ...sAt(3), chance: 22 }, { ...sAt(4), chance: 14 }, { ...sAt(6), chance: 6 }] },
+            { cat: 'Бюджетные кейсы', name: 'Furious Case', price: 29, icon: '🧰', items: [{ ...sAt(2), chance: 25 }, { ...sAt(3), chance: 25 }, { ...sAt(5), chance: 25 }, { ...sAt(6), chance: 18 }, { ...sAt(8), chance: 7 }] },
+            { cat: 'Стандартные кейсы', name: 'Rival Case', price: 49, icon: '🎒', items: [{ ...sAt(4), chance: 28 }, { ...sAt(5), chance: 27 }, { ...sAt(7), chance: 22 }, { ...sAt(9), chance: 16 }, { ...sAt(11), chance: 7 }] },
+            { cat: 'Стандартные кейсы', name: 'Scorpion Case', price: 69, icon: '💼', items: [{ ...sAt(4), chance: 25 }, { ...sAt(5), chance: 25 }, { ...sAt(7), chance: 25 }, { ...sAt(9), chance: 15 }, { ...sAt(11), chance: 7 }, { ...sAt(13), chance: 3 }] },
+            { cat: 'Стандартные кейсы', name: 'Empire Case', price: 119, icon: '🛡️', items: [{ ...sAt(7), chance: 26 }, { ...sAt(9), chance: 26 }, { ...sAt(10), chance: 22 }, { ...sAt(12), chance: 15 }, { ...sAt(14), chance: 8 }, { ...sAt(16), chance: 3 }] },
+            { cat: 'Премиум кейсы', name: 'Arcane Box', price: 199, icon: '👑', items: [{ ...sAt(9), chance: 26 }, { ...sAt(11), chance: 26 }, { ...sAt(13), chance: 22 }, { ...sAt(15), chance: 15 }, { ...sAt(17), chance: 8 }, { ...sAt(19), chance: 3 }] },
+            { cat: 'Премиум кейсы', name: 'Dragon Case', price: 399, icon: '🐉', items: [{ ...sAt(12), chance: 28 }, { ...sAt(14), chance: 26 }, { ...sAt(16), chance: 22 }, { ...sAt(18), chance: 14 }, { ...sAt(20), chance: 7 }, { ...sAt(22), chance: 3 }] },
+            { cat: 'Премиум кейсы', name: 'Knife Royal', price: 799, icon: '🗡️', items: [{ ...sAt(15), chance: 30 }, { ...sAt(17), chance: 28 }, { ...sAt(19), chance: 20 }, { ...sAt(21), chance: 13 }, { ...sAt(22), chance: 6 }, { ...sAt(23), chance: 3 }] }
         ];
 
         function renderCatalog() {
-            const catBox = document.getElementById('cases-catalog');
-            catBox.innerHTML = '';
-            const cats = ['Бюджетные кейсы', 'Стандартные кейсы', 'Премиум кейсы'];
-            cats.forEach(cName => {
+            const catBox = document.getElementById('cases-catalog'); catBox.innerHTML = '';
+            ['Бюджетные кейсы', 'Стандартные кейсы', 'Премиум кейсы'].forEach(cName => {
                 let html = `<div class="cat-title">${cName}</div><div class="grid-3">`;
-                casesData.forEach((c, idx) => {
-                    if (c.cat === cName) {
-                        html += `<div class="case-card" onclick="viewCase(${idx})"><div style="font-size:36px">${c.icon}</div><div style="font-size:12px;font-weight:bold;margin-top:4px">${c.name}</div><div class="case-price">${c.price} G</div></div>`;
-                    }
-                });
-                html += `</div>`;
-                catBox.innerHTML += html;
+                casesData.forEach((c, idx) => { if (c.cat === cName) html += `<div class="case-card" onclick="viewCase(${idx})"><div style="font-size:36px">${c.icon}</div><div style="font-size:12px;font-weight:bold;margin-top:4px">${c.name}</div><div class="case-price">${c.price} G</div></div>`; });
+                catBox.innerHTML += html + `</div>`;
             });
-        }
-        function save() {
-            gold = Math.round(gold * 100) / 100;
-            document.getElementById('bal').innerText = gold;
-            document.getElementById('st-opened').innerText = stats.opened;
-            document.getElementById('st-best').innerText = stats.best + ' G';
-            localStorage.setItem('me_g', gold);
-            localStorage.setItem('me_i', JSON.stringify(inv));
-            localStorage.setItem('me_st', JSON.stringify(stats));
-            localStorage.setItem('me_wd', JSON.stringify(withdrawals));
-            renderMainInv(); renderUpgList(); renderContractList(); updateDailyUI();
         }
 
         function swTab(n, el) {
@@ -365,16 +397,14 @@
             document.querySelectorAll('.nav-i').forEach(i => i.classList.remove('active'));
             document.getElementById('tab-' + n).classList.add('active');
             el.classList.add('active');
-            save();
+            if (n === 'admin') loadAdminData();
+            else initCloudUser();
         }
 
         function swGame(g) {
             if (busy) return;
-            ['upg', 'pln', 'cnt'].forEach(x => {
-                document.getElementById('g-' + x).style.display = g === x ? 'block' : 'none';
-                document.getElementById('bg-' + x).classList.toggle('active', g === x);
-            });
-            save();
+            ['upg', 'pln', 'cnt'].forEach(x => { document.getElementById('g-' + x).style.display = g === x ? 'block' : 'none'; document.getElementById('bg-' + x).classList.toggle('active', g === x); });
+            updateUI();
         }
 
         let curCase = 0;
@@ -475,10 +505,7 @@
             if (busy) return;
             const pos = cntSelected.indexOf(idx);
             if (pos > -1) cntSelected.splice(pos, 1);
-            else {
-                if (cntSelected.length >= 10) return customAlert('Максимум 10 предметов в контракте!', '📜');
-                cntSelected.push(idx);
-            }
+            else { if (cntSelected.length >= 10) return customAlert('Максимум 10 предметов!', '📜'); cntSelected.push(idx); }
             renderContractList();
         }
 
@@ -498,16 +525,14 @@
 
         function signContract() {
             if (busy) return;
-            if (cntSelected.length < 3) return customAlert('Выбери минимум 3 предмета для контракта!', '📜');
+            if (cntSelected.length < 3) return customAlert('Выбери минимум 3 предмета!', '📜');
             let sum = 0; cntSelected.forEach(i => sum += inv.at(i).price);
-
             cntSelected.sort((a, b) => b - a).forEach(i => inv.splice(i, 1));
             cntSelected = [];
 
             const r = Math.random();
             let mult = r < 0.25 ? (0.05 + Math.random() * 0.35) : (r < 0.85 ? (0.4 + Math.random() * 1.1) : (1.5 + Math.random() * 2.5));
             const prizePrice = Math.max(1, Math.round(sum * mult));
-
             const exactMatch = allSkins.find(s => s.price === prizePrice);
             const drop = exactMatch ? { ...exactMatch } : { name: `Контракт (${prizePrice} G)`, price: prizePrice, icon: '📜', color: '#f39c12' };
 
@@ -515,6 +540,7 @@
             save();
             showModal('КОНТРАКТ ВЫПОЛНЕН!', drop, () => { inv.unshift(drop); save(); }, () => { gold += drop.price; save(); });
         }
+
         let pBet = 10;
         function setB(b, el) { if (!busy) { pBet = b; document.querySelectorAll('#g-pln .m-btn').forEach(x => x.classList.remove('active')); el.classList.add('active'); document.getElementById('p-btn').innerText = `Запустить самолёт (${b} G)`; } }
 
@@ -563,7 +589,6 @@
                 }
             }, 25);
         }
-
         function updateDailyUI() {
             const btn = document.getElementById('daily-btn');
             const diff = Date.now() - lastDaily;
@@ -576,19 +601,28 @@
             if (Date.now() - lastDaily < 86400000) return;
             const prize = 1 + Math.floor(Math.random() * 5);
             gold += prize; lastDaily = Date.now();
-            localStorage.setItem('me_dl', lastDaily);
             save(); customAlert(`Вы получили ежедневный бонус: +${prize} G!`, '🎁');
         }
-        function usePromo() {
+        async function usePromo() {
             const inp = document.getElementById('promo-inp');
             const code = inp.value.trim().toUpperCase();
-            const codes = { 'START': 50, 'SO2TOP': 150, 'GOLD500': 500, 'MINEEZE': 100 };
-            if (!codes[code]) return customAlert('Неверный или неактивный промокод!', '❌');
+            if (!code) return;
             if (usedPromos.includes(code)) return customAlert('Вы уже активировали этот промокод!', '⚠️');
-            usedPromos.push(code); localStorage.setItem('me_pr', JSON.stringify(usedPromos));
-            gold += codes[code]; inp.value = ''; save();
-            customAlert(`Промокод активирован! Начислено +${codes[code]} G`, '🎉');
+
+            try {
+                const res = await fetch(`${DB_URL}/promos/${code}.json`);
+                const pData = await res.json();
+                if (!pData || pData.uses <= 0) return customAlert('Неверный промокод или закончились активации!', '❌');
+
+                await fetch(`${DB_URL}/promos/${code}/uses.json`, { method: 'PUT', body: JSON.stringify(pData.uses - 1) });
+                usedPromos.push(code);
+                gold += Number(pData.reward);
+                inp.value = '';
+                save();
+                customAlert(`Промокод активирован! Начислено +${pData.reward} G`, '🎉');
+            } catch (e) { customAlert('Ошибка соединения с базой!', '⚠️'); }
         }
+
         let wdIdx = null, wdPriceExact = 0;
 
         function renderMainInv() {
@@ -612,59 +646,126 @@
             const item = inv.at(i);
             const kopecks = (Math.floor(Math.random() * 89) + 11) / 100;
             wdPriceExact = (item.price + kopecks).toFixed(2);
-
             document.getElementById('wd-ico').innerText = item.icon;
             document.getElementById('wd-name').innerText = item.name;
-            document.getElementById('wd-instr').innerText = `Выставьте ${item.name} на рынок за сумму, которая указана ниже (с копейками, чтобы не было скриптов):`;
+            document.getElementById('wd-instr').innerText = `Выставьте ${item.name} за сумму, которая указана ниже (с копейками, чтобы не было скриптов):`;
             document.getElementById('wd-exact-price').innerText = wdPriceExact + ' G';
             document.getElementById('wd-pattern').value = '';
             document.getElementById('wd-gameid').value = '';
             document.getElementById('withdraw-modal').style.display = 'flex';
         }
 
-        function submitWithdraw() {
+        async function submitWithdraw() {
             const pat = document.getElementById('wd-pattern').value.trim();
             const gid = document.getElementById('wd-gameid').value.trim();
             if (!pat || !gid) return customAlert('Заполните оба поля: Паттерн и ID из игры!', '⚠️');
 
             const item = inv.at(wdIdx);
             inv.splice(wdIdx, 1);
-            withdrawals.unshift({
-                name: item.name,
-                icon: item.icon,
-                exactPrice: wdPriceExact,
-                pattern: pat,
-                gameId: gid,
-                status: 'В ожидании',
+            const wdObj = {
+                tgId: tgUserId, username: tgUserName, name: item.name, icon: item.icon,
+                exactPrice: wdPriceExact, pattern: pat, gameId: gid, status: 'В ожидании',
                 date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-            });
+            };
+
+            try {
+                await fetch(`${DB_URL}/withdrawals.json`, { method: 'POST', body: JSON.stringify(wdObj) });
+            } catch (e) {}
 
             document.getElementById('withdraw-modal').style.display = 'none';
             save();
-            customAlert('Заявка на вывод создана! Статус можно отслеживать в разделе "История выводов".', '📤');
+            customAlert('Заявка на вывод отправлена! Следите за статусом в "История выводов".', '📤');
         }
 
-        function openHistory() {
+        async function openHistory() {
             const list = document.getElementById('history-list');
-            list.innerHTML = '';
-            if (withdrawals.length === 0) {
-                list.innerHTML = '<div style="text-align:center;color:var(--mut);padding:20px;font-size:12px;">У вас пока нет заявок на вывод.</div>';
-            } else {
-                withdrawals.forEach(w => {
-                    let stClass = 'st-wait';
-                    if (w.status === 'На модерации') stClass = 'st-mod';
-                    if (w.status === 'Отклонен') stClass = 'st-rej';
-                    list.innerHTML += `<div class="w-row">
-                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                            <b>${w.icon} ${w.name}</b>
-                            <span class="st-badge ${stClass}">${w.status}</span>
-                        </div>
-                        <div style="color:var(--mut);font-size:11px;">Сумма: <b style="color:var(--grn)">${w.exactPrice} G</b> | Паттерн: <b>${w.pattern}</b></div>
-                        <div style="color:var(--mut);font-size:11px;">ID игры: <b>${w.gameId}</b> • ${w.date}</div>
-                    </div>`;
-                });
-            }
+            list.innerHTML = '<div style="text-align:center;color:var(--mut);padding:15px;">Загрузка...</div>';
             document.getElementById('history-modal').style.display = 'flex';
+
+            try {
+                const res = await fetch(`${DB_URL}/withdrawals.json`);
+                const data = await res.json() || {};
+                const myWds = Object.values(data).filter(w => String(w.tgId) === tgUserId).reverse();
+                list.innerHTML = '';
+                if (myWds.length === 0) {
+                    list.innerHTML = '<div style="text-align:center;color:var(--mut);padding:20px;font-size:12px;">Заявок на вывод пока нет.</div>';
+                } else {
+                    myWds.forEach(w => {
+                        let stClass = 'st-wait';
+                        if (w.status === 'На модерации') stClass = 'st-mod';
+                        if (w.status === 'Отклонен') stClass = 'st-rej';
+                        if (w.status === 'Выполнено') stClass = 'st-ok';
+                        list.innerHTML += `<div class="w-row"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><b>${w.icon} ${w.name}</b><span class="st-badge ${stClass}">${w.status}</span></div><div style="color:var(--mut);font-size:11px;">Сумма: <b style="color:var(--grn)">${w.exactPrice} G</b> | Паттерн: <b>${w.pattern}</b></div><div style="color:var(--mut);font-size:11px;">ID игры: <b>${w.gameId}</b> • ${w.date}</div></div>`;
+                    });
+                }
+            } catch (e) { list.innerHTML = 'Ошибка загрузки'; }
+        }
+        async function admAddGold() {
+            if (tgUserId !== ADMIN_ID) return;
+            const uid = document.getElementById('adm-uid').value.trim();
+            const amt = parseFloat(document.getElementById('adm-amt').value);
+            if (!uid || isNaN(amt)) return customAlert('Введите ID игрока и сумму!', '⚠️');
+
+            try {
+                const res = await fetch(`${DB_URL}/users/${uid}.json`);
+                const uData = await res.json();
+                if (!uData) return customAlert('Игрок с таким ID ещё ни разу не заходил в бота!', '❌');
+
+                const newGold = Math.max(0, Math.round((Number(uData.gold || 0) + amt) * 100) / 100);
+                await fetch(`${DB_URL}/users/${uid}/gold.json`, { method: 'PUT', body: JSON.stringify(newGold) });
+                if (uid === tgUserId) { gold = newGold; updateUI(); }
+                document.getElementById('adm-amt').value = '';
+                customAlert(`Баланс игрока ${uid} обновлён! Теперь у него: ${newGold} G`, '✅');
+            } catch (e) { customAlert('Ошибка базы данных!', '⚠️'); }
+        }
+
+        async function admCreatePromo() {
+            if (tgUserId !== ADMIN_ID) return;
+            const code = document.getElementById('adm-pcode').value.trim().toUpperCase();
+            const reward = parseFloat(document.getElementById('adm-preward').value);
+            const uses = parseInt(document.getElementById('adm-puses').value);
+            if (!code || isNaN(reward) || isNaN(uses)) return customAlert('Заполните все поля промокода!', '⚠️');
+
+            await fetch(`${DB_URL}/promos/${code}.json`, { method: 'PUT', body: JSON.stringify({ reward, uses }) });
+            document.getElementById('adm-pcode').value = '';
+            document.getElementById('adm-preward').value = '';
+            document.getElementById('adm-puses').value = '';
+            loadAdminData();
+            customAlert(`Промокод ${code} на ${reward} G (${uses} акт.) создан!`, '🎟️');
+        }
+
+        async function admSetWdStatus(key, newStatus) {
+            if (tgUserId !== ADMIN_ID) return;
+            await fetch(`${DB_URL}/withdrawals/${key}/status.json`, { method: 'PUT', body: JSON.stringify(newStatus) });
+            loadAdminData();
+        }
+
+        async function loadAdminData() {
+            if (tgUserId !== ADMIN_ID) return;
+            const pRes = await fetch(`${DB_URL}/promos.json`);
+            const pData = await pRes.json() || {};
+            const pBox = document.getElementById('adm-promos-list'); pBox.innerHTML = '';
+            Object.entries(pData).forEach(([k, v]) => {
+                pBox.innerHTML += `<div style="display:flex;justify-content:space-between;background:var(--bg);padding:6px 10px;border-radius:8px;font-size:11px;margin-top:4px;"><span><b>${k}</b> (+${v.reward} G)</span><span>Осталось: <b>${v.uses}</b></span></div>`;
+            });
+
+            const wRes = await fetch(`${DB_URL}/withdrawals.json`);
+            const wData = await wRes.json() || {};
+            const wBox = document.getElementById('adm-wd-list'); wBox.innerHTML = '';
+            const entries = Object.entries(wData).reverse();
+            if (entries.length === 0) wBox.innerHTML = '<div style="font-size:12px;color:var(--mut);text-align:center;">Заявок пока нет</div>';
+            entries.forEach(([key, w]) => {
+                wBox.innerHTML += `<div class="w-row">
+                    <div style="display:flex;justify-content:space-between;"><b>${w.icon} ${w.name} (${w.exactPrice} G)</b><span style="color:var(--acc)">${w.status}</span></div>
+                    <div style="font-size:11px;color:var(--mut);margin-top:3px;">Игрок: ${w.username} (TG: ${w.tgId})</div>
+                    <div style="font-size:11px;color:var(--txt);">ID игры: <b>${w.gameId}</b> | Паттерн: <b>${w.pattern}</b></div>
+                    <div class="adm-acts">
+                        <button class="adm-btn" style="background:#3b82f6" onclick="admSetWdStatus('${key}','На модерации')">На модерацию</button>
+                        <button class="adm-btn" style="background:#2ecc71;color:#000" onclick="admSetWdStatus('${key}','Выполнено')">Выполнено</button>
+                        <button class="adm-btn" style="background:#ef4444" onclick="admSetWdStatus('${key}','Отклонен')">Отклонить</button>
+                    </div>
+                </div>`;
+            });
         }
 
         function showModal(sub, it, keep, sell) {
@@ -677,7 +778,7 @@
         }
 
         renderCatalog();
-        save();
+        initCloudUser();
     </script>
 </body>
 </html>
