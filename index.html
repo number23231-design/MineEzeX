@@ -481,7 +481,7 @@
             sMy.innerHTML = myItem ? `<b>${myItem.icon} ${myItem.name}</b><span style="color:var(--acc)">${myItem.price} G</span>` : `<span style="color:var(--mut)">1. Твой скин</span>`;
             sTgt.innerHTML = `<b>${targetSkin.icon} ${targetSkin.name}</b><span style="color:var(--grn)">${targetSkin.price} G</span>`;
 
-            upgChance = (myItem && targetSkin.price > myItem.price) ? Math.min(80, Math.max(5, Math.round((myItem.price / targetSkin.price) * 85))) : 0;
+            upgChance = (myItem && targetSkin.price > myItem.price) ? Math.min(80, Math.max(0.05, Math.round((myItem.price / targetSkin.price) * 8500) / 100)) : 0;
             document.getElementById('upg-ch').innerText = upgChance + '%';
             const deg = (upgChance / 100) * 360;
             document.getElementById('w-circ').style.background = `conic-gradient(#2ecc71 0deg ${deg}deg, #1b2845 ${deg}deg 360deg)`;
