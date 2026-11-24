@@ -16,18 +16,19 @@
         .tab { display: none; padding: 14px; max-width: 480px; margin: 0 auto; }
         .tab.active { display: block; }
         .cat-title { font-size: 14px; font-weight: 800; color: var(--blu); margin: 14px 0 8px; text-transform: uppercase; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
         .box { background: var(--card); padding: 14px; border-radius: 14px; border: 1px solid var(--bdr); margin-bottom: 12px; }
         .case-card { background: linear-gradient(160deg, var(--card), #0b1222); border-radius: 12px; padding: 12px 6px; text-align: center; border: 1px solid var(--bdr); }
         .case-price { background: var(--acc); color: #000; font-weight: 800; font-size: 11px; padding: 4px 8px; border-radius: 6px; display: inline-block; margin-top: 6px; }
         .back-btn { background: var(--card-l); border: 1px solid var(--bdr); color: var(--txt); padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; margin-bottom: 12px; }
-        .r-win { position: relative; height: 112px; overflow: hidden; background: #060a14; border-radius: 12px; margin: 12px 0; border: 1px solid var(--bdr); }
+        .r-win { position: relative; height: 96px; overflow: hidden; background: #060a14; border-radius: 10px; margin: 6px 0; border: 1px solid var(--bdr); }
         .ptr { position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: var(--acc); z-index: 10; transform: translateX(-50%); }
         .track { display: flex; align-items: center; height: 100%; padding-left: 50%; will-change: transform; }
-        .r-item { min-width: 96px; height: 92px; margin: 0 4px; background: var(--card); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4px; border-bottom: 3px solid #fff; flex-shrink: 0; }
+        .r-item { min-width: 90px; height: 82px; margin: 0 4px; background: var(--card); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3px; border-bottom: 3px solid #fff; flex-shrink: 0; }
         .drop-row { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 8px 12px; border-radius: 10px; border-left: 4px solid #fff; font-size: 12px; margin-bottom: 6px; }
-        .g-sw { display: flex; gap: 6px; margin-bottom: 12px; }
-        .g-btn { flex: 1; padding: 9px 4px; background: var(--card); border: 1px solid var(--bdr); color: var(--mut); border-radius: 10px; font-weight: bold; font-size: 12px; }
+        .g-sw { display: flex; gap: 5px; margin-bottom: 12px; }
+        .g-btn { flex: 1; padding: 8px 2px; background: var(--card); border: 1px solid var(--bdr); color: var(--mut); border-radius: 10px; font-weight: bold; font-size: 11px; }
         .g-btn.active { background: var(--blu); color: #fff; border-color: var(--blu); }
         .w-wrap { position: relative; width: 185px; height: 185px; margin: 10px auto; }
         .w-circ { width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(var(--grn) 0deg 180deg, #1b2845 180deg 360deg); display: flex; align-items: center; justify-content: center; border: 3px solid var(--bdr); }
@@ -40,17 +41,22 @@
         .deck { position: absolute; left: 1920px; bottom: 54px; width: 180px; height: 22px; background: #334155; border-top: 4px solid var(--grn); text-align: center; font-size: 10px; line-height: 18px; font-weight: bold; color: var(--grn); }
         .plane { position: absolute; left: 30px; bottom: 90px; font-size: 28px; z-index: 5; }
         .orb { position: absolute; font-size: 11px; background: radial-gradient(circle, #fde047, #f59e0b); color: #000; font-weight: 800; padding: 4px 7px; border-radius: 50%; transform: translate(-50%, -50%); }
-        .hud { position: absolute; top: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; z-index: 10; }
-        .hud-badge { background: rgba(8, 13, 26, 0.8); border: 1px solid var(--bdr); padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; }
-        .m-row { display: flex; gap: 6px; margin: 10px 0; }
-        .m-btn { flex: 1; padding: 8px; background: var(--card-l); border: 1px solid var(--bdr); color: #fff; border-radius: 8px; font-weight: bold; font-size: 12px; }
-        .m-btn.active { border-color: var(--acc); color: var(--acc); background: rgba(243,156,18,0.1); }
+        .hud { position: absolute; top: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; z-index: 10; pointer-events: none; }
+        .hud-badge { background: rgba(8, 13, 26, 0.85); border: 1px solid var(--bdr); padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: bold; }
+        .ddl-arena { position: relative; width: 100%; height: 320px; background: linear-gradient(180deg, #070d1d 0%, #0f2147 100%); border-radius: 14px; overflow: hidden; margin-bottom: 10px; border: 1px solid var(--bdr); touch-action: none; }
+        .ddl-plat { position: absolute; width: 58px; height: 10px; background: var(--grn); border-radius: 5px; box-shadow: 0 0 8px rgba(46,204,113,0.4); }
+        .ddl-player { position: absolute; width: 28px; height: 28px; font-size: 24px; line-height: 28px; text-align: center; z-index: 5; }
+        .ddl-hint { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 16px; font-size: 11px; color: rgba(255,255,255,0.4); pointer-events: none; }
+        .m-row { display: flex; gap: 5px; margin: 8px 0; flex-wrap: wrap; }
+        .m-btn { flex: 1; min-width: 44px; padding: 8px 4px; background: var(--card-l); border: 1px solid var(--bdr); color: #fff; border-radius: 8px; font-weight: bold; font-size: 12px; }
+        .m-btn.active { border-color: var(--acc); color: var(--acc); background: rgba(243,156,18,0.12); }
         .inv-card { background: var(--card); padding: 8px 6px; border-radius: 10px; text-align: center; border-bottom: 3px solid #fff; display: flex; flex-direction: column; justify-content: space-between; }
         .inv-card.sel { outline: 2px solid var(--acc); background: var(--card-l); }
         .inv-acts { display: flex; gap: 4px; margin-top: 6px; }
         .inv-btn { flex: 1; background: var(--card-l); border: 1px solid var(--bdr); color: var(--acc); font-size: 10px; padding: 5px 2px; border-radius: 6px; font-weight: bold; }
         .btn { width: 100%; padding: 13px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; border-radius: 12px; color: #fff; font-weight: bold; font-size: 14px; margin-top: 8px; }
         .btn-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; }
+        .btn-grn { background: linear-gradient(135deg, #2ecc71, #27ae60); color: #000; }
         .inp { width: 100%; padding: 11px; background: #060a14; border: 1px solid var(--bdr); border-radius: 10px; color: #fff; font-size: 13px; margin-top: 8px; outline: none; }
         .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
         .stat-item { background: var(--card-l); padding: 10px; border-radius: 10px; text-align: center; }
@@ -65,8 +71,8 @@
         .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 65px; background: var(--card); display: flex; border-top: 1px solid var(--bdr); z-index: 100; }
         .nav-i { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--mut); font-size: 11px; gap: 3px; }
         .nav-i.active { color: var(--blu); font-weight: bold; }
-        .modal { display: none; position: fixed; inset: 0; background: rgba(4, 8, 18, 0.88); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-        .m-box { background: linear-gradient(160deg, #111d38, #0a1224); padding: 20px; border-radius: 18px; text-align: center; width: 100%; max-width: 325px; border: 2px solid #2b589c; box-shadow: 0 0 30px rgba(37, 99, 235, 0.35); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(4, 8, 18, 0.88); z-index: 200; align-items: center; justify-content: center; padding: 16px; }
+        .m-box { background: linear-gradient(160deg, #111d38, #0a1224); padding: 18px; border-radius: 18px; text-align: center; width: 100%; max-width: 340px; border: 2px solid #2b589c; box-shadow: 0 0 30px rgba(37, 99, 235, 0.35); }
     </style>
 </head>
 <body>
@@ -80,9 +86,14 @@
         <div id="case-detail" style="display:none;">
             <button class="back-btn" onclick="closeCaseView()">← Назад к кейсам</button>
             <div class="box" style="text-align:center;">
-                <div style="font-size:40px" id="cd-ico">📦</div>
+                <div style="font-size:36px" id="cd-ico">📦</div>
                 <h2 style="font-size:18px; margin:4px 0;" id="cd-name">Кейс</h2>
-                <div class="r-win"><div class="ptr"></div><div class="track" id="track"></div></div>
+                <div class="m-row" style="margin:8px 0;">
+                    <button class="m-btn active" id="mult-1" onclick="setCaseMult(1)">x1</button>
+                    <button class="m-btn" id="mult-3" onclick="setCaseMult(3)">x3</button>
+                    <button class="m-btn" id="mult-5" onclick="setCaseMult(5)">x5</button>
+                </div>
+                <div id="roulettes-box"></div>
                 <button class="btn btn-gold" id="spin-btn" onclick="spinCase()">Открыть</button>
             </div>
             <div style="margin:12px 0 8px; font-weight:bold; font-size:14px;">Содержимое кейса:</div>
@@ -94,7 +105,8 @@
         <div class="g-sw">
             <button class="g-btn active" id="bg-upg" onclick="swGame('upg')">🎡 Апгрейд</button>
             <button class="g-btn" id="bg-pln" onclick="swGame('pln')">✈️ Самолёт</button>
-            <button class="g-btn" id="bg-cnt" onclick="swGame('cnt')">📜 Контракты</button>
+            <button class="g-btn" id="bg-cnt" onclick="swGame('cnt')">📜 Контракт</button>
+            <button class="g-btn" id="bg-ddl" onclick="swGame('ddl')">🦘 Дудлик</button>
         </div>
 
         <div id="g-upg">
@@ -143,8 +155,31 @@
             <div style="font-size:13px; font-weight:bold; margin-bottom:8px;">Выбери скины из инвентаря:</div>
             <div class="grid-3" id="cnt-list"></div>
         </div>
-    </div>
 
+        <div id="g-ddl" style="display:none;">
+            <div class="ddl-arena" id="ddl-arena">
+                <div class="hud">
+                    <div class="hud-badge">Очки: <span id="ddl-score" style="color:var(--blu)">0</span></div>
+                    <div class="hud-badge">Множитель: <span id="ddl-mult" style="color:var(--grn)">1.0x</span></div>
+                </div>
+                <div id="ddl-world"></div>
+                <div class="ddl-hint"><span>◀ Зажми лево</span><span>Зажми право ▶</span></div>
+            </div>
+            <div class="box">
+                <div style="font-size:11px; color:var(--mut);">+15 очков за подъём. Каждые 300 очков +0.1x к ставке. Упадёшь — приз сгорит!</div>
+                <div class="m-row" id="ddl-bets">
+                    <button class="m-btn active" onclick="setDdlBet(1, this)">1 G</button>
+                    <button class="m-btn" onclick="setDdlBet(3, this)">3 G</button>
+                    <button class="m-btn" onclick="setDdlBet(5, this)">5 G</button>
+                    <button class="m-btn" onclick="setDdlBet(10, this)">10 G</button>
+                    <button class="m-btn" onclick="setDdlBet(25, this)">25 G</button>
+                    <button class="m-btn" onclick="setDdlBet(50, this)">50 G</button>
+                </div>
+                <button class="btn btn-gold" id="ddl-start-btn" onclick="startDoodle()">Играть (1 G)</button>
+                <button class="btn btn-grn" id="ddl-cash-btn" style="display:none;" onclick="cashoutDoodle()">Забрать 1.00 G</button>
+            </div>
+        </div>
+    </div>
     <div id="tab-bonus" class="tab">
         <div class="box" style="text-align:center;">
             <div style="font-size:40px; margin-bottom:6px;">🎁</div>
@@ -180,11 +215,10 @@
         <div class="grid-3" id="main-inv"></div>
     </div>
 
-    <!-- СКРЫТАЯ ВКЛАДКА 5: АДМИН-ПАНЕЛЬ (Видна только ID 8491429813) -->
     <div id="tab-admin" class="tab">
         <div class="box">
             <h3 style="color:var(--acc); margin-bottom:6px;">💰 Управление балансом игрока</h3>
-            <input type="text" id="adm-uid" class="inp" placeholder="Telegram ID игрока (напр. 12345678)">
+            <input type="text" id="adm-uid" class="inp" placeholder="Telegram ID игрока">
             <input type="number" id="adm-amt" class="inp" placeholder="Сумма (+500 или -100)">
             <button class="btn btn-gold" onclick="admAddGold()">Изменить баланс</button>
         </div>
@@ -193,7 +227,7 @@
             <input type="text" id="adm-pcode" class="inp" placeholder="Название кода (напр. STREAM50)">
             <div style="display:flex; gap:8px;">
                 <input type="number" id="adm-preward" class="inp" placeholder="Сумма G">
-                <input type="number" id="adm-puses" class="inp" placeholder="Кол-во активаций">
+                <input type="number" id="adm-puses" class="inp" placeholder="Активаций">
             </div>
             <button class="btn" onclick="admCreatePromo()">Создать промокод</button>
             <div id="adm-promos-list" style="margin-top:10px;"></div>
@@ -206,6 +240,7 @@
             <div id="adm-wd-list"></div>
         </div>
     </div>
+
     <div class="modal" id="topup-modal">
         <div class="m-box">
             <div style="font-size:38px; margin-bottom:8px;">💎</div>
@@ -219,9 +254,9 @@
 
     <div class="modal" id="withdraw-modal">
         <div class="m-box">
-            <div style="font-size:36px;" id="wd-ico">🔫</div>
-            <b style="font-size:16px;" id="wd-name">M4 "Flock"</b>
-            <p style="font-size:12px; color:var(--mut); margin:8px 0; line-height:1.4;" id="wd-instr">Выставьте скин за сумму с копейками:</p>
+            <div style="font-size:36px;">🎯</div>
+            <b style="font-size:16px;">Вывод: M4 "Flock"</b>
+            <p style="font-size:12px; color:var(--mut); margin:8px 0; line-height:1.4;" id="wd-instr">Выставьте M4 "Flock" на рынок за указанную сумму с копейками (чтобы не было скриптов):</p>
             <div style="background:var(--bg); padding:8px; border-radius:8px; font-size:16px; font-weight:900; color:var(--grn); border:1px solid var(--bdr);" id="wd-exact-price">0.00 G</div>
             <input type="text" id="wd-pattern" class="inp" placeholder="Паттерн (напр. 412 или 000)">
             <input type="text" id="wd-gameid" class="inp" placeholder="Ваш ID из игры Standoff 2">
@@ -240,12 +275,10 @@
 
     <div class="modal" id="modal">
         <div class="m-box">
-            <div style="font-size:12px; color:var(--mut);" id="m-sub">ВЫПАЛО</div>
-            <div style="font-size:50px; margin:12px 0;" id="m-ico">🔫</div>
-            <b style="font-size:18px;" id="m-tit">Скин</b>
-            <div style="color:var(--acc); font-weight:bold; margin:6px 0 18px;" id="m-prc">100 G</div>
+            <div style="font-size:12px; color:var(--mut);" id="m-sub">ВАШ ДРОП</div>
+            <div id="m-items-box" style="max-height:230px; overflow-y:auto; margin:10px 0;"></div>
             <div style="display:flex; gap:8px;">
-                <button class="btn" style="background:var(--grn); color:#000; margin:0;" id="m-keep">В инвентарь</button>
+                <button class="btn btn-grn" style="margin:0;" id="m-keep">В инвентарь</button>
                 <button class="btn btn-gold" style="margin:0;" id="m-sell">Продать</button>
             </div>
         </div>
@@ -267,26 +300,19 @@
         <div class="nav-i" id="nav-admin" style="display:none; color:var(--acc);" onclick="swTab('admin', this)"><span style="font-size:20px">👑</span>Админка</div>
     </div>
     <script>
-        const DB_URL = "https://mineeze-so2-default-rtdb.firebaseio.com";
+        const DB_URL = "https://firebaseio.com";
         const ADMIN_ID = "8491429813";
-        const tg = window.Telegram?.WebApp;
+
         let tgUserId = "";
         let tgUserName = "Игрок MineEze";
 
         function parseTgUser() {
             if (window.Telegram?.WebApp) {
                 const webApp = window.Telegram.WebApp;
-                webApp.expand();
-                webApp.ready();
-                if (webApp.initDataUnsafe?.user?.id) {
-                    return webApp.initDataUnsafe.user;
-                }
+                webApp.expand(); webApp.ready();
+                if (webApp.initDataUnsafe?.user?.id) return webApp.initDataUnsafe.user;
                 if (webApp.initData) {
-                    try {
-                        const params = new URLSearchParams(webApp.initData);
-                        const uStr = params.get('user');
-                        if (uStr) return JSON.parse(uStr);
-                    } catch (e) {}
+                    try { const uStr = new URLSearchParams(webApp.initData).get('user'); if (uStr) return JSON.parse(uStr); } catch (e) {}
                 }
             }
             return null;
@@ -304,22 +330,13 @@
         document.getElementById('p-tgid').innerText = tgUserId;
         document.getElementById('topup-id').innerText = tgUserId;
         document.getElementById('p-username').innerText = tgUserName;
+        if (tgUserId === ADMIN_ID) document.getElementById('nav-admin').style.display = 'flex';
 
-        if (tgUserId === ADMIN_ID) {
-            document.getElementById('nav-admin').style.display = 'flex';
-        }
-        
-        let gold = 5;
-        let inv = [];
-        let stats = { opened: 0, best: 0 };
-        let usedPromos = [];
-        let lastDaily = 0;
-        let busy = false;
+        let gold = 5, inv = [], stats = { opened: 0, best: 0 }, usedPromos = [], lastDaily = 0, busy = false;
 
         function customAlert(txt, ico = '💎') { document.getElementById('a-ico').innerText = ico; document.getElementById('a-msg').innerText = txt; document.getElementById('alert-modal').style.display = 'flex'; }
         function openTopup() { document.getElementById('topup-modal').style.display = 'flex'; }
 
-        // Загрузка данных игрока из Firebase при старте
         async function initCloudUser() {
             try {
                 const res = await fetch(`${DB_URL}/users/${tgUserId}.json`);
@@ -330,29 +347,17 @@
                     stats = data.stats || { opened: 0, best: 0 };
                     usedPromos = data.usedPromos || [];
                     lastDaily = data.lastDaily || 0;
-                } else {
-                    await syncCloudUser();
-                }
-            } catch (e) { console.log("Cloud sync error", e); }
+                } else { await syncCloudUser(); }
+            } catch (e) {}
             updateUI();
         }
 
         async function syncCloudUser() {
             gold = Math.round(gold * 100) / 100;
-            try {
-                await fetch(`${DB_URL}/users/${tgUserId}.json`, {
-                    method: 'PUT',
-                    body: JSON.stringify({ username: tgUserName, gold, inv, stats, usedPromos, lastDaily })
-                });
-            } catch (e) {}
+            try { await fetch(`${DB_URL}/users/${tgUserId}.json`, { method: 'PUT', body: JSON.stringify({ username: tgUserName, gold, inv, stats, usedPromos, lastDaily }) }); } catch (e) {}
         }
 
-        function save() {
-            gold = Math.round(gold * 100) / 100;
-            updateUI();
-            syncCloudUser();
-        }
-
+        function save() { gold = Math.round(gold * 100) / 100; updateUI(); syncCloudUser(); }
         function updateUI() {
             document.getElementById('bal').innerText = gold;
             document.getElementById('st-opened').innerText = stats.opened;
@@ -361,55 +366,82 @@
         }
 
         const allSkins = [
-            { name: 'P350 "Savannah"', price: 3, icon: '🔫', color: '#b0c3d9' },
-            { name: 'G22 "Pixel"', price: 5, icon: '🔫', color: '#b0c3d9' },
-            { name: 'SM1014 "Pathfinder"', price: 8, icon: '🔫', color: '#5e98d9' },
-            { name: 'MP7 "Thorn"', price: 11, icon: '🔫', color: '#5e98d9' },
-            { name: 'UMP45 "Cyberpunk"', price: 16, icon: '🔫', color: '#5e98d9' },
-            { name: 'M4 "Flock"', price: 22, icon: '🎯', color: '#4b69ff' },
-            { name: 'FAMAS "Fury"', price: 28, icon: '🎯', color: '#4b69ff' },
-            { name: 'P90 "Samurai"', price: 34, icon: '🎯', color: '#4b69ff' },
-            { name: 'AKR "Carbon"', price: 45, icon: '🎯', color: '#4b69ff' },
-            { name: 'Deagle "Red Dragon"', price: 58, icon: '🔫', color: '#8847ff' },
-            { name: 'M4 "Tiger"', price: 72, icon: '⚡', color: '#8847ff' },
-            { name: 'AKR12 "Railgun"', price: 95, icon: '⚡', color: '#8847ff' },
-            { name: 'M16 "Winged"', price: 130, icon: '⚡', color: '#8847ff' },
-            { name: 'M4A1 "Bubblegum"', price: 175, icon: '🔥', color: '#d32ce6' },
-            { name: 'AWM "Genesis"', price: 230, icon: '🔥', color: '#d32ce6' },
-            { name: 'AKR "Treasure Hunter"', price: 310, icon: '🔥', color: '#d32ce6' },
-            { name: 'AWM "Sport V2"', price: 420, icon: '🔥', color: '#eb4b4b' },
-            { name: 'Scorpion "Starfall"', price: 560, icon: '🗡️', color: '#eb4b4b' },
-            { name: 'Kunai "Luxury"', price: 740, icon: '🗡️', color: '#eb4b4b' },
-            { name: 'Butterfly "Legacy"', price: 980, icon: '🗡️', color: '#eb4b4b' },
-            { name: 'M9 "Ancient"', price: 1350, icon: '🗡️', color: '#eb4b4b' },
-            { name: 'Karambit "Gold"', price: 1850, icon: '🗡️', color: '#eb4b4b' },
-            { name: 'Butterfly "Dragon Glass"', price: 2500, icon: '🗡️', color: '#eb4b4b' },
-            { name: 'M9 "Dragon Glass"', price: 3500, icon: '🗡️', color: '#eb4b4b' }
+            { name: 'Sticker "Dirt"', price: 0.3, icon: '🤢', color: '#8ba0c4' },       // 0
+            { name: 'P350 "Rust"', price: 0.6, icon: '🔫', color: '#8ba0c4' },          // 1
+            { name: 'G22 "Mold"', price: 1.2, icon: '🔫', color: '#b0c3d9' },           // 2
+            { name: 'P350 "Savannah"', price: 3, icon: '🔫', color: '#b0c3d9' },        // 3
+            { name: 'G22 "Pixel"', price: 5, icon: '🔫', color: '#b0c3d9' },            // 4
+            { name: 'SM1014 "Pathfinder"', price: 8, icon: '🔫', color: '#5e98d9' },    // 5
+            { name: 'MP7 "Thorn"', price: 11, icon: '🔫', color: '#5e98d9' },           // 6
+            { name: 'UMP45 "Cyberpunk"', price: 16, icon: '🔫', color: '#5e98d9' },     // 7
+            { name: 'M4 "Flock"', price: 22, icon: '🎯', color: '#4b69ff' },            // 8
+            { name: 'FAMAS "Fury"', price: 28, icon: '🎯', color: '#4b69ff' },          // 9
+            { name: 'P90 "Samurai"', price: 34, icon: '🎯', color: '#4b69ff' },         // 10
+            { name: 'AKR "Carbon"', price: 45, icon: '🎯', color: '#4b69ff' },          // 11
+            { name: 'Deagle "Red Dragon"', price: 58, icon: '🔫', color: '#8847ff' },   // 12
+            { name: 'M4 "Tiger"', price: 72, icon: '⚡', color: '#8847ff' },            // 13
+            { name: 'AKR12 "Railgun"', price: 95, icon: '⚡', color: '#8847ff' },       // 14
+            { name: 'M16 "Winged"', price: 130, icon: '⚡', color: '#8847ff' },         // 15
+            { name: 'M4A1 "Bubblegum"', price: 175, icon: '🔥', color: '#d32ce6' },     // 16
+            { name: 'AWM "Genesis"', price: 230, icon: '🔥', color: '#d32ce6' },        // 17
+            { name: 'AKR "Treasure Hunter"', price: 310, icon: '🔥', color: '#d32ce6' },// 18
+            { name: 'AWM "Sport V2"', price: 420, icon: '🔥', color: '#eb4b4b' },       // 19
+            { name: 'Scorpion "Starfall"', price: 560, icon: '🗡️', color: '#eb4b4b' },  // 20
+            { name: 'Kunai "Luxury"', price: 740, icon: '🗡️', color: '#eb4b4b' },       // 21
+            { name: 'Butterfly "Legacy"', price: 980, icon: '🗡️', color: '#eb4b4b' },   // 22
+            { name: 'M9 "Ancient"', price: 1350, icon: '🗡️', color: '#eb4b4b' },        // 23
+            { name: 'Karambit "Gold"', price: 1850, icon: '🗡️', color: '#eb4b4b' },     // 24
+            { name: 'Butterfly "Dragon Glass"', price: 2500, icon: '🗡️', color: '#eb4b4b' }, // 25
+            { name: 'M9 "Dragon Glass"', price: 3500, icon: '🗡️', color: '#eb4b4b' }    // 26
         ];
         const sAt = (i) => allSkins.at(i);
-        const casesData = [
-            { cat: 'Бюджетные кейсы', name: 'Бомж Кейс', price: 9, icon: '📦', items: [{ ...sAt(0), chance: 35 }, { ...sAt(1), chance: 30 }, { ...sAt(2), chance: 20 }, { ...sAt(3), chance: 10 }, { ...sAt(5), chance: 5 }] },
-            { cat: 'Бюджетные кейсы', name: 'Start Box', price: 15, icon: '🗳️', items: [{ ...sAt(1), chance: 30 }, { ...sAt(2), chance: 28 }, { ...sAt(3), chance: 22 }, { ...sAt(4), chance: 14 }, { ...sAt(6), chance: 6 }] },
-            { cat: 'Бюджетные кейсы', name: 'Furious Case', price: 29, icon: '🧰', items: [{ ...sAt(2), chance: 25 }, { ...sAt(3), chance: 25 }, { ...sAt(5), chance: 25 }, { ...sAt(6), chance: 18 }, { ...sAt(8), chance: 7 }] },
-            { cat: 'Стандартные кейсы', name: 'Rival Case', price: 49, icon: '🎒', items: [{ ...sAt(4), chance: 28 }, { ...sAt(5), chance: 27 }, { ...sAt(7), chance: 22 }, { ...sAt(9), chance: 16 }, { ...sAt(11), chance: 7 }] },
-            { cat: 'Стандартные кейсы', name: 'Scorpion Case', price: 69, icon: '💼', items: [{ ...sAt(4), chance: 25 }, { ...sAt(5), chance: 25 }, { ...sAt(7), chance: 25 }, { ...sAt(9), chance: 15 }, { ...sAt(11), chance: 7 }, { ...sAt(13), chance: 3 }] },
-            { cat: 'Стандартные кейсы', name: 'Empire Case', price: 119, icon: '🛡️', items: [{ ...sAt(7), chance: 26 }, { ...sAt(9), chance: 26 }, { ...sAt(10), chance: 22 }, { ...sAt(12), chance: 15 }, { ...sAt(14), chance: 8 }, { ...sAt(16), chance: 3 }] },
-            { cat: 'Премиум кейсы', name: 'Arcane Box', price: 199, icon: '👑', items: [{ ...sAt(9), chance: 26 }, { ...sAt(11), chance: 26 }, { ...sAt(13), chance: 22 }, { ...sAt(15), chance: 15 }, { ...sAt(17), chance: 8 }, { ...sAt(19), chance: 3 }] },
-            { cat: 'Премиум кейсы', name: 'Dragon Case', price: 399, icon: '🐉', items: [{ ...sAt(12), chance: 28 }, { ...sAt(14), chance: 26 }, { ...sAt(16), chance: 22 }, { ...sAt(18), chance: 14 }, { ...sAt(20), chance: 7 }, { ...sAt(22), chance: 3 }] },
-            { cat: 'Премиум кейсы', name: 'Knife Royal', price: 799, icon: '🗡️', items: [{ ...sAt(15), chance: 30 }, { ...sAt(17), chance: 28 }, { ...sAt(19), chance: 20 }, { ...sAt(21), chance: 13 }, { ...sAt(22), chance: 6 }, { ...sAt(23), chance: 3 }] }
-        ];
 
+        const casesData = [
+            { cat: 'Бюджетные кейсы', name: 'Рыготня', price: 1, icon: '🤮', items: [
+                { ...sAt(0), chance: 42 }, { ...sAt(1), chance: 33 }, { ...sAt(2), chance: 14 }, { ...sAt(3), chance: 8 }, { ...sAt(5), chance: 3 }
+            ]},
+            { cat: 'Бюджетные кейсы', name: 'Бомж Кейс', price: 9, icon: '📦', items: [
+                { ...sAt(3), chance: 40 }, { ...sAt(4), chance: 35 }, { ...sAt(6), chance: 15 }, { ...sAt(7), chance: 7 }, { ...sAt(8), chance: 3 }
+            ]},
+            { cat: 'Бюджетные кейсы', name: 'Start Box', price: 15, icon: '🗳️', items: [
+                { ...sAt(4), chance: 38 }, { ...sAt(5), chance: 37 }, { ...sAt(7), chance: 15 }, { ...sAt(8), chance: 7 }, { ...sAt(10), chance: 3 }
+            ]},
+            { cat: 'Бюджетные кейсы', name: 'Furious Case', price: 29, icon: '🧰', items: [
+                { ...sAt(5), chance: 38 }, { ...sAt(6), chance: 36 }, { ...sAt(10), chance: 16 }, { ...sAt(11), chance: 7 }, { ...sAt(12), chance: 3 }
+            ]},
+            { cat: 'Стандартные кейсы', name: 'Rival Case', price: 49, icon: '🎒', items: [
+                { ...sAt(7), chance: 38 }, { ...sAt(9), chance: 37 }, { ...sAt(12), chance: 15 }, { ...sAt(13), chance: 7 }, { ...sAt(14), chance: 3 }
+            ]},
+            { cat: 'Стандартные кейсы', name: 'Scorpion Case', price: 69, icon: '💼', items: [
+                { ...sAt(8), chance: 38 }, { ...sAt(10), chance: 36 }, { ...sAt(13), chance: 16 }, { ...sAt(14), chance: 7 }, { ...sAt(16), chance: 3 }
+            ]},
+            { cat: 'Стандартные кейсы', name: 'Empire Case', price: 119, icon: '🛡️', items: [
+                { ...sAt(11), chance: 39 }, { ...sAt(13), chance: 36 }, { ...sAt(15), chance: 15 }, { ...sAt(16), chance: 7 }, { ...sAt(18), chance: 3 }
+            ]},
+            { cat: 'Премиум кейсы', name: 'Arcane Box', price: 199, icon: '👑', items: [
+                { ...sAt(13), chance: 38 }, { ...sAt(15), chance: 36 }, { ...sAt(17), chance: 16 }, { ...sAt(18), chance: 7 }, { ...sAt(20), chance: 3 }
+            ]},
+            { cat: 'Премиум кейсы', name: 'Dragon Case', price: 399, icon: '🐉', items: [
+                { ...sAt(15), chance: 39 }, { ...sAt(17), chance: 36 }, { ...sAt(19), chance: 15 }, { ...sAt(20), chance: 7 }, { ...sAt(22), chance: 3 }
+            ]},
+            { cat: 'Премиум кейсы', name: 'Knife Royal', price: 799, icon: '🗡️', items: [
+                { ...sAt(18), chance: 38 }, { ...sAt(20), chance: 37 }, { ...sAt(22), chance: 15 }, { ...sAt(23), chance: 7 }, { ...sAt(25), chance: 3 }
+            ]}
+        ];
         function renderCatalog() {
             const catBox = document.getElementById('cases-catalog'); catBox.innerHTML = '';
             ['Бюджетные кейсы', 'Стандартные кейсы', 'Премиум кейсы'].forEach(cName => {
-                let html = `<div class="cat-title">${cName}</div><div class="grid-3">`;
-                casesData.forEach((c, idx) => { if (c.cat === cName) html += `<div class="case-card" onclick="viewCase(${idx})"><div style="font-size:36px">${c.icon}</div><div style="font-size:12px;font-weight:bold;margin-top:4px">${c.name}</div><div class="case-price">${c.price} G</div></div>`; });
+                let html = `<div class="cat-title">${cName}</div><div class="grid-2">`;
+                casesData.forEach((c, idx) => {
+                    if (c.cat === cName) html += `<div class="case-card" onclick="viewCase(${idx})"><div style="font-size:36px">${c.icon}</div><div style="font-size:13px;font-weight:bold;margin-top:4px">${c.name}</div><div class="case-price">${c.price} G</div></div>`;
+                });
                 catBox.innerHTML += html + `</div>`;
             });
         }
 
         function swTab(n, el) {
             if (busy) return;
+            if (ddlRunning) stopDoodle();
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-i').forEach(i => i.classList.remove('active'));
             document.getElementById('tab-' + n).classList.add('active');
@@ -420,21 +452,35 @@
 
         function swGame(g) {
             if (busy) return;
-            ['upg', 'pln', 'cnt'].forEach(x => { document.getElementById('g-' + x).style.display = g === x ? 'block' : 'none'; document.getElementById('bg-' + x).classList.toggle('active', g === x); });
+            if (ddlRunning) stopDoodle();
+            ['upg', 'pln', 'cnt', 'ddl'].forEach(x => {
+                document.getElementById('g-' + x).style.display = g === x ? 'block' : 'none';
+                document.getElementById('bg-' + x).classList.toggle('active', g === x);
+            });
             updateUI();
         }
 
-        let curCase = 0;
+        let curCase = 0, caseMult = 1;
+
+        function setCaseMult(m) {
+            if (busy) return;
+            caseMult = m;
+           [1, 3, 5].forEach(x => document.getElementById('mult-' + x).classList.toggle('active', x === m));
+            const c = casesData.at(curCase);
+            document.getElementById('spin-btn').innerText = `Открыть x${m} за ${Math.round(c.price * m * 100) / 100} G`;
+            buildRoulettes(c, []);
+        }
+
         function viewCase(idx) {
-            curCase = idx; const c = casesData.at(idx);
+            curCase = idx; caseMult = 1;
+            const c = casesData.at(idx);
             document.getElementById('cases-catalog').style.display = 'none';
             document.getElementById('case-detail').style.display = 'block';
             document.getElementById('cd-ico').innerText = c.icon;
             document.getElementById('cd-name').innerText = c.name;
-            document.getElementById('spin-btn').innerText = `Открыть за ${c.price} G`;
             const list = document.getElementById('cd-drops'); list.innerHTML = '';
             c.items.forEach(it => { list.innerHTML += `<div class="drop-row" style="border-left-color:${it.color}"><div><b>${it.icon} ${it.name}</b> <span style="color:var(--acc)">(${it.price} G)</span></div><div style="background:var(--card-l);padding:3px 8px;border-radius:6px;font-weight:bold;">${it.chance}%</div></div>`; });
-            fillTrack(c, c.items.at(0));
+            setCaseMult(1);
         }
         function closeCaseView() { if (!busy) { document.getElementById('case-detail').style.display = 'none'; document.getElementById('cases-catalog').style.display = 'block'; } }
 
@@ -443,36 +489,53 @@
             for (let it of c.items) { s += it.chance; if (r <= s) return { name: it.name, price: it.price, icon: it.icon, color: it.color }; }
             const f = c.items.at(0); return { name: f.name, price: f.price, icon: f.icon, color: f.color };
         }
-        function fillTrack(c, win) {
-            const tr = document.getElementById('track'); tr.style.transition = 'none'; tr.style.transform = 'translateX(0px)'; tr.innerHTML = '';
-            for (let i = 0; i < 40; i++) {
-                const it = i === 32 ? win : rollFromCase(c);
-                tr.innerHTML += `<div class="r-item" style="border-bottom-color:${it.color}"><div style="font-size:24px">${it.icon}</div><div style="font-size:10px;font-weight:bold">${it.name}</div><div style="font-size:10px;color:#f39c12">${it.price} G</div></div>`;
+
+        function buildRoulettes(c, wins) {
+            const box = document.getElementById('roulettes-box');
+            box.innerHTML = '';
+            for (let r = 0; r < caseMult; r++) {
+                let itemsHtml = '';
+                const winItem = wins.at(r) || c.items.at(0);
+                for (let i = 0; i < 40; i++) {
+                    const it = i === 32 ? winItem : rollFromCase(c);
+                    itemsHtml += `<div class="r-item" style="border-bottom-color:${it.color}"><div style="font-size:22px">${it.icon}</div><div style="font-size:9px;font-weight:bold">${it.name}</div><div style="font-size:9px;color:#f39c12">${it.price} G</div></div>`;
+                }
+                box.innerHTML += `<div class="r-win"><div class="ptr"></div><div class="track" id="track-${r}">${itemsHtml}</div></div>`;
             }
         }
+
         function spinCase() {
             if (busy) return;
             const c = casesData.at(curCase);
-            if (gold < c.price) return customAlert('Недостаточно голды! Нажми + вверху для пополнения.', '💰');
-            busy = true; gold -= c.price; stats.opened++;
-            const win = rollFromCase(c);
-            if (win.price > stats.best) stats.best = win.price;
+            const totalCost = Math.round(c.price * caseMult * 100) / 100;
+            if (gold < totalCost) return customAlert('Недостаточно голды! Нажми + вверху для пополнения.', '💰');
+
+            busy = true; gold -= totalCost; stats.opened += caseMult;
+            const wins = [];
+            for (let i = 0; i < caseMult; i++) {
+                const w = rollFromCase(c);
+                if (w.price > stats.best) stats.best = w.price;
+                wins.push(w);
+            }
             save(); document.getElementById('spin-btn').disabled = true;
-            fillTrack(c, win);
+            buildRoulettes(c, wins);
 
             setTimeout(() => {
-                const tr = document.getElementById('track'), winCard = tr.children.item(32);
-                const off = (winCard.offsetLeft + winCard.offsetWidth / 2) - (tr.parentElement.offsetWidth / 2) + (Math.floor(Math.random() * 36) - 18);
-                tr.style.transition = 'transform 3.8s cubic-bezier(0.1, 0.85, 0.2, 1)';
-                tr.style.transform = `translateX(-${off}px)`;
+                for (let r = 0; r < caseMult; r++) {
+                    const tr = document.getElementById(`track-${r}`);
+                    const winCard = tr.children.item(32);
+                    const off = (winCard.offsetLeft + winCard.offsetWidth / 2) - (tr.parentElement.offsetWidth / 2) + (Math.floor(Math.random() * 30) - 15);
+                    tr.style.transition = `transform ${3.6 + r * 0.15}s cubic-bezier(0.1, 0.85, 0.2, 1)`;
+                    tr.style.transform = `translateX(-${off}px)`;
+                }
             }, 50);
 
             setTimeout(() => {
                 busy = false; document.getElementById('spin-btn').disabled = false;
-                showModal('ВАМ ВЫПАЛО', win, () => { inv.unshift(win); save(); }, () => { gold += win.price; save(); });
-            }, 4000);
+                showMultiModal(`ВЫПАЛО (${caseMult} ШТ.)`, wins);
+            }, 4100);
         }
-        let myIdx = null, targetSkin = sAt(5), upgTab = 'my', upgChance = 0, rot = 0;
+        let myIdx = null, targetSkin = sAt(8), upgTab = 'my', upgChance = 0, rot = 0;
         function swUpgList(t) { upgTab = t; document.getElementById('sub-my').classList.toggle('active', t === 'my'); document.getElementById('sub-all').classList.toggle('active', t === 'all'); renderUpgList(); }
 
         function renderUpgList() {
@@ -503,7 +566,7 @@
             const usedIdx = myIdx, curCh = upgChance, wonSkin = { ...targetSkin };
             const win = (Math.random() * 100) < curCh;
             const lim = (curCh / 100) * 360;
-            const ang = win ? Math.floor(Math.random() * (lim - 6)) + 3 : Math.floor(Math.random() * (360 - lim - 6)) + lim + 3;
+            const ang = win ? Math.random() * Math.max(1, lim - 2) + 1 : Math.floor(Math.random() * (360 - lim - 4)) + lim + 2;
 
             rot += 1800 + (ang - (rot % 360));
             document.getElementById('w-arr').style.transform = `rotate(${rot}deg)`;
@@ -512,7 +575,7 @@
                 inv.splice(usedIdx, 1); myIdx = null; busy = false;
                 if (win && wonSkin.price > stats.best) stats.best = wonSkin.price;
                 save();
-                if (win) showModal('АПГРЕЙД УСПЕШЕН!', wonSkin, () => { inv.unshift(wonSkin); save(); }, () => { gold += wonSkin.price; save(); });
+                if (win) showMultiModal('АПГРЕЙД УСПЕШЕН!', [wonSkin]);
                 else customAlert('Стрелка ушла в тёмную зону — скин сгорел!', '💥');
             }, 3600);
         }
@@ -531,7 +594,7 @@
             let sum = 0; cntSelected.forEach(i => sum += inv.at(i).price);
             document.getElementById('cnt-count').innerText = cntSelected.length;
             document.getElementById('cnt-sum').innerText = Math.round(sum * 100) / 100;
-            document.getElementById('cnt-range').innerText = `${Math.max(1, Math.round(sum * 0.05))} - ${Math.round(sum * 4)} G`;
+            document.getElementById('cnt-range').innerText = `${Math.max(0.1, Math.round(sum * 5) / 100)} - ${Math.round(sum * 400) / 100} G`;
 
             const list = document.getElementById('cnt-list'); list.innerHTML = '';
             inv.forEach((it, i) => {
@@ -548,16 +611,15 @@
             cntSelected = [];
 
             const r = Math.random();
-            let mult = r < 0.25 ? (0.05 + Math.random() * 0.35) : (r < 0.85 ? (0.4 + Math.random() * 1.1) : (1.5 + Math.random() * 2.5));
-            const prizePrice = Math.max(1, Math.round(sum * mult));
+            let mult = r < 0.28 ? (0.05 + Math.random() * 0.35) : (r < 0.86 ? (0.4 + Math.random() * 1.1) : (1.5 + Math.random() * 2.5));
+            const prizePrice = Math.max(0.1, Math.round(sum * mult * 100) / 100);
             const exactMatch = allSkins.find(s => s.price === prizePrice);
             const drop = exactMatch ? { ...exactMatch } : { name: `Контракт (${prizePrice} G)`, price: prizePrice, icon: '📜', color: '#f39c12' };
 
             if (drop.price > stats.best) stats.best = drop.price;
             save();
-            showModal('КОНТРАКТ ВЫПОЛНЕН!', drop, () => { inv.unshift(drop); save(); }, () => { gold += drop.price; save(); });
+            showMultiModal('КОНТРАКТ ВЫПОЛНЕН!', [drop]);
         }
-
         let pBet = 10;
         function setB(b, el) { if (!busy) { pBet = b; document.querySelectorAll('#g-pln .m-btn').forEach(x => x.classList.remove('active')); el.classList.add('active'); document.getElementById('p-btn').innerText = `Запустить самолёт (${b} G)`; } }
 
@@ -606,6 +668,121 @@
                 }
             }, 25);
         }
+
+        let ddlBet = 1, ddlRunning = false, ddlTimer = null, ddlDir = 0, ddlScore = 0, ddlMult = 1.0;
+
+        function setDdlBet(b, el) {
+            if (ddlRunning || busy) return;
+            ddlBet = b;
+            document.querySelectorAll('#ddl-bets .m-btn').forEach(x => x.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('ddl-start-btn').innerText = `Играть (${b} G)`;
+        }
+
+        const ddlArena = document.getElementById('ddl-arena');
+        const handleDdlTouch = (e) => {
+            if (!ddlRunning) return;
+            const rect = ddlArena.getBoundingClientRect();
+            const clientX = e.touches ? e.touches.item(0).clientX : e.clientX;
+            ddlDir = (clientX - rect.left) < (rect.width / 2) ? -1 : 1;
+        };
+        ddlArena.addEventListener('touchstart', handleDdlTouch, { passive: true });
+        ddlArena.addEventListener('touchmove', handleDdlTouch, { passive: true });
+        ddlArena.addEventListener('touchend', () => { ddlDir = 0; });
+        ddlArena.addEventListener('mousedown', handleDdlTouch);
+        ddlArena.addEventListener('mouseup', () => { ddlDir = 0; });
+
+        function stopDoodle() {
+            ddlRunning = false; busy = false; ddlDir = 0;
+            if (ddlTimer) clearInterval(ddlTimer);
+            document.getElementById('ddl-start-btn').style.display = 'block';
+            document.getElementById('ddl-cash-btn').style.display = 'none';
+        }
+
+        function startDoodle() {
+            if (ddlRunning || busy) return;
+            if (gold < ddlBet) return customAlert('Не хватает голды на ставку!', '💰');
+
+            gold -= ddlBet; save();
+            ddlRunning = true; busy = true; ddlDir = 0; ddlScore = 0; ddlMult = 1.0;
+            document.getElementById('ddl-score').innerText = '0';
+            document.getElementById('ddl-mult').innerText = '1.0x';
+            document.getElementById('ddl-start-btn').style.display = 'none';
+            document.getElementById('ddl-cash-btn').style.display = 'block';
+            document.getElementById('ddl-cash-btn').innerText = `Забрать ${ddlBet.toFixed(2)} G`;
+
+            const world = document.getElementById('ddl-world');
+            world.innerHTML = '';
+            const W = ddlArena.offsetWidth || 320;
+            const H = 320;
+
+            let px = W / 2 - 14, py = 250, vy = -8.5;
+            const pEl = document.createElement('div');
+            pEl.className = 'ddl-player'; pEl.innerText = '🦘';
+            world.appendChild(pEl);
+
+            const plats = [];
+            plats.push({ x: W / 2 - 29, y: 280, scored: true, el: document.createElement('div') });
+            for (let i = 1; i < 8; i++) {
+                plats.push({ x: Math.random() * (W - 62), y: 280 - i * 44, scored: false, el: document.createElement('div') });
+            }
+            plats.forEach(p => { p.el.className = 'ddl-plat'; world.appendChild(p.el); });
+
+            ddlTimer = setInterval(() => {
+                px += ddlDir * 5.2;
+                if (px < -14) px = W - 14;
+                if (px > W - 14) px = -14;
+
+                vy += 0.36;
+                py += vy;
+
+                if (vy > 0) {
+                    plats.forEach(p => {
+                        if (px + 22 > p.x && px + 6 < p.x + 58 && py + 28 >= p.y && py + 28 <= p.y + 14) {
+                            vy = -8.8;
+                            if (!p.scored) {
+                                p.scored = true;
+                                ddlScore += 15;
+                                ddlMult = Math.round((1 + Math.floor(ddlScore / 300) * 0.1) * 10) / 10;
+                                document.getElementById('ddl-score').innerText = ddlScore;
+                                document.getElementById('ddl-mult').innerText = ddlMult.toFixed(1) + 'x';
+                                document.getElementById('ddl-cash-btn').innerText = `Забрать ${(ddlBet * ddlMult).toFixed(2)} G`;
+                            }
+                        }
+                    });
+                }
+
+                if (py < 135) {
+                    const diff = 135 - py;
+                    py = 135;
+                    plats.forEach(p => {
+                        p.y += diff;
+                        if (p.y > H) {
+                            p.y = -10;
+                            p.x = Math.random() * (W - 62);
+                            p.scored = false;
+                        }
+                    });
+                }
+
+                pEl.style.left = px + 'px'; pEl.style.top = py + 'px';
+                plats.forEach(p => { p.el.style.left = p.x + 'px'; p.el.style.top = p.y + 'px'; });
+
+                if (py > H) {
+                    stopDoodle();
+                    customAlert('Персонаж упал вниз! Ставка и накопленный приз сгорели.', '💥');
+                }
+            }, 22);
+        }
+
+        function cashoutDoodle() {
+            if (!ddlRunning) return;
+            const winSum = Math.round(ddlBet * ddlMult * 100) / 100;
+            stopDoodle();
+            gold += winSum;
+            save();
+            customAlert(`Ты вовремя забрал приз в Дудлике: +${winSum} G (${ddlMult.toFixed(1)}x)!`, '🦘');
+        }
         function updateDailyUI() {
             const btn = document.getElementById('daily-btn');
             const diff = Date.now() - lastDaily;
@@ -624,13 +801,13 @@
             const inp = document.getElementById('promo-inp');
             const code = inp.value.trim().toUpperCase();
             if (!code) return;
-                        if (code === 'ADMIN8491') {
+            if (code === 'ADMIN8491') {
                 tgUserId = ADMIN_ID;
                 document.getElementById('p-tgid').innerText = ADMIN_ID;
                 document.getElementById('nav-admin').style.display = 'flex';
                 inp.value = '';
                 return customAlert('Админ-панель активирована!', '👑');
-                        }
+            }
             if (usedPromos.includes(code)) return customAlert('Вы уже активировали этот промокод!', '⚠️');
 
             try {
@@ -670,9 +847,7 @@
             const item = inv.at(i);
             const kopecks = (Math.floor(Math.random() * 89) + 11) / 100;
             wdPriceExact = (item.price + kopecks).toFixed(2);
-            document.getElementById('wd-ico').innerText = item.icon;
-            document.getElementById('wd-name').innerText = item.name;
-            document.getElementById('wd-instr').innerText = `Выставьте ${item.name} за сумму, которая указана ниже (с копейками, чтобы не было скриптов):`;
+            document.getElementById('wd-instr').innerText = `Выставьте M4 "Flock" на рынок за сумму, которая указана ниже (с копейками, чтобы не было скриптов):`;
             document.getElementById('wd-exact-price').innerText = wdPriceExact + ' G';
             document.getElementById('wd-pattern').value = '';
             document.getElementById('wd-gameid').value = '';
@@ -687,18 +862,15 @@
             const item = inv.at(wdIdx);
             inv.splice(wdIdx, 1);
             const wdObj = {
-                tgId: tgUserId, username: tgUserName, name: item.name, icon: item.icon,
+                tgId: tgUserId, username: tgUserName, name: `M4 "Flock" (${item.name})`, icon: '🎯',
                 exactPrice: wdPriceExact, pattern: pat, gameId: gid, status: 'В ожидании',
                 date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             };
 
-            try {
-                await fetch(`${DB_URL}/withdrawals.json`, { method: 'POST', body: JSON.stringify(wdObj) });
-            } catch (e) {}
-
+            try { await fetch(`${DB_URL}/withdrawals.json`, { method: 'POST', body: JSON.stringify(wdObj) }); } catch (e) {}
             document.getElementById('withdraw-modal').style.display = 'none';
             save();
-            customAlert('Заявка на вывод отправлена! Следите за статусом в "История выводов".', '📤');
+            customAlert('Заявка на вывод M4 "Flock" отправлена! Следите за статусом в "История выводов".', '📤');
         }
 
         async function openHistory() {
@@ -751,9 +923,7 @@
             if (!code || isNaN(reward) || isNaN(uses)) return customAlert('Заполните все поля промокода!', '⚠️');
 
             await fetch(`${DB_URL}/promos/${code}.json`, { method: 'PUT', body: JSON.stringify({ reward, uses }) });
-            document.getElementById('adm-pcode').value = '';
-            document.getElementById('adm-preward').value = '';
-            document.getElementById('adm-puses').value = '';
+            document.getElementById('adm-pcode').value = ''; document.getElementById('adm-preward').value = ''; document.getElementById('adm-puses').value = '';
             loadAdminData();
             customAlert(`Промокод ${code} на ${reward} G (${uses} акт.) создан!`, '🎟️');
         }
@@ -769,9 +939,7 @@
             const pRes = await fetch(`${DB_URL}/promos.json`);
             const pData = await pRes.json() || {};
             const pBox = document.getElementById('adm-promos-list'); pBox.innerHTML = '';
-            Object.entries(pData).forEach(([k, v]) => {
-                pBox.innerHTML += `<div style="display:flex;justify-content:space-between;background:var(--bg);padding:6px 10px;border-radius:8px;font-size:11px;margin-top:4px;"><span><b>${k}</b> (+${v.reward} G)</span><span>Осталось: <b>${v.uses}</b></span></div>`;
-            });
+            Object.entries(pData).forEach(([k, v]) => { pBox.innerHTML += `<div style="display:flex;justify-content:space-between;background:var(--bg);padding:6px 10px;border-radius:8px;font-size:11px;margin-top:4px;"><span><b>${k}</b> (+${v.reward} G)</span><span>Осталось: <b>${v.uses}</b></span></div>`; });
 
             const wRes = await fetch(`${DB_URL}/withdrawals.json`);
             const wData = await wRes.json() || {};
@@ -792,12 +960,22 @@
             });
         }
 
-        function showModal(sub, it, keep, sell) {
-            document.getElementById('m-sub').innerText = sub; document.getElementById('m-ico').innerText = it.icon;
-            document.getElementById('m-tit').innerText = it.name; document.getElementById('m-prc').innerText = it.price + ' G';
-            document.getElementById('m-sell').innerText = `Продать (${it.price} G)`;
-            document.getElementById('m-keep').onclick = () => { document.getElementById('modal').style.display = 'none'; keep(); };
-            document.getElementById('m-sell').onclick = () => { document.getElementById('modal').style.display = 'none'; sell(); };
+        function showMultiModal(sub, items) {
+            document.getElementById('m-sub').innerText = sub;
+            const box = document.getElementById('m-items-box');
+            box.innerHTML = '';
+            let totalSell = 0;
+            items.forEach(it => {
+                totalSell += it.price;
+                box.innerHTML += `<div style="display:flex;justify-content:space-between;align-items:center;background:var(--bg);padding:8px 10px;border-radius:10px;margin-bottom:6px;border-left:4px solid ${it.color}">
+                    <span style="font-size:13px;font-weight:bold">${it.icon} ${it.name}</span>
+                    <b style="color:var(--acc);font-size:13px">${it.price} G</b>
+                </div>`;
+            });
+            totalSell = Math.round(totalSell * 100) / 100;
+            document.getElementById('m-sell').innerText = `Продать (${totalSell} G)`;
+            document.getElementById('m-keep').onclick = () => { document.getElementById('modal').style.display = 'none'; items.forEach(x => inv.unshift(x)); save(); };
+            document.getElementById('m-sell').onclick = () => { document.getElementById('modal').style.display = 'none'; gold += totalSell; save(); };
             document.getElementById('modal').style.display = 'flex';
         }
 
